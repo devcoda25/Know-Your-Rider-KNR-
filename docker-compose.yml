@@ -1,0 +1,72 @@
+name: knr
+
+x-php-service: &php-service
+  image: knr-php:dev
+  build:
+    context: .
+    dockerfile: docker/php.Dockerfile
+  volumes:
+    - ./docker/php-entrypoint.sh:/entrypoint.sh:ro
+  depends_on:
+    postgres:
+      condition: service_healthy
+    redis:
+      condition: service_started
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: knr
+      POSTGRES_PASSWORD: knr_secret
+      POSTGRES_DB: knr
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knr"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  # Public entry point for the mobile app, super admin web app and QR scan page.
+  gateway:
+    <<: *php-service
+    volumes:
+      - ./services/gateway:/var/www
+      - ./docker/php-entrypoint.sh:/entrypoint.sh:ro
+    ports:
+      - "8000:8000"
+    depends_on:
+      - auth
+      - registry
+
+  auth:
+    <<: *php-service
+    volumes:
+      - ./services/auth:/var/www
+      - ./docker/php-entrypoint.sh:/entrypoint.sh:ro
+    environment:
+      RUN_MIGRATIONS: "1"
+    ports:
+      - "8001:8000"
+
+  registry:
+    <<: *php-service
+    volumes:
+      - ./services/registry:/var/www
+      - ./docker/php-entrypoint.sh:/entrypoint.sh:ro
+    environment:
+      RUN_MIGRATIONS: "1"
+    ports:
+      - "8002:8000"
+
+volumes:
+  pgdata:

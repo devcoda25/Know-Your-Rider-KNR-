@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "Know Your Rider",
+    "slug": "know-your-rider",
+    "scheme": "knr",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-camera",
+        { "cameraPermission": "KNR uses the camera to scan rider QR codes and take photos." }
+      ]
+    ],
+    "android": { "package": "com.knr.app" },
+    "ios": { "bundleIdentifier": "com.knr.app" },
+    "experiments": { "typedRoutes": true }
+  }
+}

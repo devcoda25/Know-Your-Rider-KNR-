@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/*
+ * KNR design tokens.
+ * TODO: replace the placeholder brand colours below with the palette from the
+ * Behance reference design ("Ride and Delivery App UI"). Keep the status colours:
+ * they carry fixed meaning across every KNR app.
+ */
+:root {
+  --brand: #1d4ed8;
+  --brand-dark: #1e3a8a;
+  --brand-soft: #dbeafe;
+  --accent: #f59e0b;
+
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+
+  --ok: #15803d;
+  --ok-soft: #dcfce7;
+  --warn: #b45309;
+  --warn-soft: #fef3c7;
+  --expired: #c2410c;
+  --expired-soft: #ffedd5;
+  --danger: #b91c1c;
+  --danger-soft: #fee2e2;
+  --info: #475569;
+  --info-soft: #e2e8f0;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-line: var(--border);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-expired: var(--expired);
+  --color-expired-soft: var(--expired-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+}

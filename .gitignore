@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+vendor/
+
+# env
+.env
+.env.*
+!.env.example
+
+# build output
+.next/
+out/
+dist/
+build/
+.expo/
+.turbo/
+
+# php / laravel
+storage/*.key
+.phpunit.result.cache
+.phpunit.cache/
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
+*.log
