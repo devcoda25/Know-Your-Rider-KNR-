@@ -40,7 +40,7 @@ services:
   gateway:
     <<: *php-service
     volumes:
-      - ./services/gateway:/var/www
+      - ./gateway:/var/www
       - ./docker/php-entrypoint.sh:/entrypoint.sh:ro
     ports:
       - "8000:8000"
@@ -51,7 +51,7 @@ services:
   auth:
     <<: *php-service
     volumes:
-      - ./services/auth:/var/www
+      - ./auth:/var/www
       - ./docker/php-entrypoint.sh:/entrypoint.sh:ro
     environment:
       RUN_MIGRATIONS: "1"
@@ -61,7 +61,7 @@ services:
   registry:
     <<: *php-service
     volumes:
-      - ./services/registry:/var/www
+      - ./registry:/var/www
       - ./docker/php-entrypoint.sh:/entrypoint.sh:ro
     environment:
       RUN_MIGRATIONS: "1"

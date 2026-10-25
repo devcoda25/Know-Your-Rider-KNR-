@@ -9,7 +9,7 @@ Passenger scan page ┘     /api/v1/*      └─►  Registry service :8002  �
 ```
 
 Three small Laravel services, one database each, behind a gateway. They live in this repo
-(a monorepo) and share nothing except an HTTP contract and two secrets.
+(one repo, three top-level projects) and share nothing except an HTTP contract and two secrets.
 
 | Service | Owns | Notes |
 |---|---|---|
@@ -22,7 +22,7 @@ Three small Laravel services, one database each, behind a gateway. They live in 
 Auth and the rider registry change for different reasons and have different security needs.
 The gateway gives one place for rate limiting and for the public scan endpoints. More services
 (subscriptions and payments, notifications, reporting) can be added behind the gateway later by
-adding a Laravel folder, a line in `docker-compose.yml` and a line in `services/gateway/config/gateway.php`.
+adding a Laravel folder inside `knr-backend/`, a line in `knr-backend/docker-compose.yml` and a line in `knr-backend/gateway/config/gateway.php`.
 
 ## Request flow
 
@@ -123,7 +123,7 @@ Things the boilerplate deliberately leaves out, roughly in order:
 6. **Audit log screen** in the admin app (the data is already collected in `scan_logs`) and a rider-facing "who looked me up" view.
 7. **Subscriptions and payments** service (MTN Mobile Money, Airtel Money), free tier limits, and rider-count enforcement.
 8. **Stage head handover** when leadership changes, rider transfers between stages, and rider self-service.
-9. **Theme.** Brand colours in `apps/admin-web/src/app/globals.css` and `apps/mobile/src/theme/index.ts` are placeholders until the
+9. **Theme.** Brand colours in `admin-platform/src/app/globals.css` and `mobileuserapp/src/theme/index.ts` are placeholders until the
    Behance palette is filled in.
 10. **Production hardening:** HTTPS, secrets management (change `JWT_SECRET` and `INTERNAL_API_KEY`), a separate key per service,
     backups, object storage for photos, CI, tests.

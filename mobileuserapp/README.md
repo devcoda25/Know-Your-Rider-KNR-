@@ -1,4 +1,4 @@
-# KNR Mobile
+# KNR Mobile User App
 
 React Native (Expo + Expo Router) app for stage heads, officers and passengers.
 

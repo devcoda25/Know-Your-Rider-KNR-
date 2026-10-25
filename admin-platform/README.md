@@ -1,4 +1,4 @@
-# KNR Admin Web
+# KNR Admin Platform
 
 Next.js super admin app for the platform owner, plus the public passenger scan pages.
 
